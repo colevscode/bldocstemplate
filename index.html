@@ -4,46 +4,74 @@ title: {{$ if not $meta.title }}Home{{$ endif }}{$ meta.title }
 {{$ endmeta }}
 
 <html><head>
-	<link href="/libraries/bootstrap/bootstrap.css" rel="stylesheet" media="screen">
-	<link href="/libraries/bootstrap/bootstrap-responsive.css" rel="stylesheet" media="screen">
-	<link href="/styles/main.css" rel="stylesheet" media="screen">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* extra styles for managing the menu navigation list */
+    .affix {
+      top: 15px;
+      position: static;
+    }
+    @media screen and (min-width: 768px) {
+      .affix {
+        position: fixed;
+        width: 160px;
+      }
+    }
+    @media screen and (min-width: 992px) {
+      .affix {
+        position: fixed;
+        width: 213px;
+      }
+    }
+    @media screen and (min-width: 1200px) {
+      .affix {
+        position: fixed;
+        width: 270px;
+      }
+    }
+  </style>
+
 </head>
 <body>
-	
-	{{$ include /partials/header.html }}
+  
+  <!-- Header -->
 
-	<div id="content">
-	<div class="container">
-		<div class="row">
-			<div class="span3">
 
-				<div data-spy="affix" data-offset-top="120">
-					<h3>Guides:</h3>
-					{{$ nav /guides/*.html 'nav-tabs nav-stacked' | sort $page.order $page.title }}
+  <div class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="#">My Documentation</a>
+    </div>
+  </div>
 
-					<h3>Reference:</h3>
-					{{$ nav /reference/*.html 'nav-tabs nav-stacked' | sort $page.order $page.title }}
-				</div>
 
-			</div>
+  <!-- Content -->
 
-			<div class="span7">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
 
-				<h1>{$ meta.title }</h1>
+        <div data-spy="affix" data-offset-top="50">
+          {{$ nav /documents/*.html 'list-group' | sort $page.order $page.title }}
+        </div>
 
-				{{$ if not $content }}
-					This is the docs! You should start with the Getting Started Guide!
-				{{$ endif }}
+      </div>
 
-				{$ content }
+      <div class="col-sm-9">
 
-			</div>
-		</div>
+        <h1>{$ meta.title }</h1>
 
-	</div>
-	</div>
+        {{$ if not $content }}
+          This is the docs! You should start with the Getting Started Guide!
+        {{$ endif }}
 
-	<script src="/libraries/jquery.js"></script>
-	<script src="/libraries/bootstrap/bootstrap.js"></script>
+        {$ content }
+
+      </div>
+    </div>
+  </div>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
 </body>
 </html>
