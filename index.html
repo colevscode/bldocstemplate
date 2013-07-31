@@ -1,0 +1,49 @@
+{{$ meta}}
+type: guide
+title: {{$ if not $meta.title }}Home{{$ endif }}{$ meta.title }
+{{$ endmeta }}
+
+<html><head>
+	<link href="/libraries/bootstrap/bootstrap.css" rel="stylesheet" media="screen">
+	<link href="/libraries/bootstrap/bootstrap-responsive.css" rel="stylesheet" media="screen">
+	<link href="/styles/main.css" rel="stylesheet" media="screen">
+</head>
+<body>
+	
+	{{$ include /partials/header.html }}
+
+	<div id="content">
+	<div class="container">
+		<div class="row">
+			<div class="span3">
+
+				<div data-spy="affix" data-offset-top="120">
+					<h3>Guides:</h3>
+					{{$ nav /guides/*.html 'nav-tabs nav-stacked' | sort $page.order $page.title }}
+
+					<h3>Reference:</h3>
+					{{$ nav /reference/*.html 'nav-tabs nav-stacked' | sort $page.order $page.title }}
+				</div>
+
+			</div>
+
+			<div class="span7">
+
+				<h1>{$ meta.title }</h1>
+
+				{{$ if not $content }}
+					This is the docs! You should start with the Getting Started Guide!
+				{{$ endif }}
+
+				{$ content }
+
+			</div>
+		</div>
+
+	</div>
+	</div>
+
+	<script src="/libraries/jquery.js"></script>
+	<script src="/libraries/bootstrap/bootstrap.js"></script>
+</body>
+</html>
