@@ -1,72 +1,63 @@
-{{$ meta}}
-type: guide
-title: {{$ if not $meta.title }}Home{{$ endif }}{$ meta.title }
+{{$ meta }}
+docstitle: My Documentation
 {{$ endmeta }}
 
 <html><head>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
 
+  <title>{$ meta.title } | {$ meta.docstitle } </title>
+  
   <style>
-    /* extra styles for managing the menu navigation list */
-    .affix {
-      top: 15px;
+    /* styles for the navigation menu */
+    .nav-menu {
+      margin-top: 20px;
+    }
+    .nav-menu.affix {
+      margin-top: 0px;
+      top: 40px;
       position: static;
     }
     @media screen and (min-width: 768px) {
-      .affix {
+      .nav-menu.affix {
         position: fixed;
-        width: 160px;
+        width: 159px;
       }
     }
     @media screen and (min-width: 992px) {
-      .affix {
+      .nav-menu.affix {
         position: fixed;
-        width: 213px;
+        width: 212px;
       }
     }
     @media screen and (min-width: 1200px) {
-      .affix {
+      .nav-menu.affix {
         position: fixed;
-        width: 270px;
+        width: 269px;
       }
+    }
+    .main-content {
+      margin-bottom: 50px;
     }
   </style>
 
 </head>
 <body>
   
-  <!-- Header -->
-
-
   <div class="navbar">
     <div class="container">
-      <a class="navbar-brand" href="#">My Documentation</a>
+      <a class="navbar-brand" href="/">{$ meta.docstitle }</a>
     </div>
   </div>
 
-
-  <!-- Content -->
-
-  <div class="container">
+  <div class="container main-content">
     <div class="row">
       <div class="col-sm-3">
-
-        <div data-spy="affix" data-offset-top="50">
-          {{$ nav /documents/*.html 'list-group' | sort $page.order $page.title }}
+        <div data-spy="affix" data-offset-top="50" class="nav-menu">
+          {{$ nav /**/*.html 'nav nav-pills nav-stacked' | sort {$ page.order } {$ page.title } }}
         </div>
-
       </div>
-
       <div class="col-sm-9">
-
-        <h1>{$ meta.title }</h1>
-
-        {{$ if not $content }}
-          This is the docs! You should start with the Getting Started Guide!
-        {{$ endif }}
-
         {$ content }
-
       </div>
     </div>
   </div>
