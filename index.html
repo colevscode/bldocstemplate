@@ -52,7 +52,7 @@ title: {{$ if not $meta.title }}Home{{$ endif }}{$ meta.title }
       <div class="col-sm-3">
 
         <div data-spy="affix" data-offset-top="50">
-          {{$ nav /documents/*.html 'list-group' | sort $page.order $page.title }}
+          {{$ nav /documents/*.html 'list-group' 'list-group-item' | sort $page.order $page.title }}
         </div>
 
       </div>
